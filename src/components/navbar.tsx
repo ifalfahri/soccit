@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SoccitText from "../../public/logo-name.svg";
 import SoccitMobile from "../../public/soccit-full.svg";
+import { UserDropdown } from "./user-dropdown";
 
 export async function Navbar() {
   const { getUser } = getKindeServerSession();
@@ -30,7 +31,7 @@ export async function Navbar() {
       <div className="flex items-center gap-x-4">
         <ThemeToggle />
         {user ? (
-          <Button>Logout</Button>
+          <UserDropdown userImage={user.picture} />
         ) : (
           <div className="flex items-center gap-x-4">
             <Button variant="secondary" asChild>
