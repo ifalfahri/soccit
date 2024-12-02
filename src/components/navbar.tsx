@@ -1,12 +1,18 @@
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import {
+  LoginLink,
+  RegisterLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
 import SoccitText from "../../public/logo-name.svg";
 import SoccitMobile from "../../public/soccit-full.svg";
-import { ThemeToggle } from "@/components/theme-toggle";
-import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
-import { Button } from "@/components/ui/button";
 
-export function Navbar() {
+export async function Navbar() {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
   return (
     <nav className="h-[10vh] w-full flex items-center border-b px-5 lg:px-14 justify-between">
       <Link href="/" className="flex items-center gap-x-3">
@@ -22,9 +28,19 @@ export function Navbar() {
         />
       </Link>
       <div className="flex items-center gap-x-4">
-      <ThemeToggle />
-      <Button variant="secondary" asChild><RegisterLink>Sign Up</RegisterLink></Button>
-      <Button asChild><LoginLink>Log In</LoginLink></Button>
+        <ThemeToggle />
+        {user ? (
+          <Button>Logout</Button>
+        ) : (
+          <div className="flex items-center gap-x-4">
+            <Button variant="secondary" asChild>
+              <RegisterLink>Sign Up</RegisterLink>
+            </Button>
+            <Button asChild>
+              <LoginLink>Log In</LoginLink>
+            </Button>
+          </div>
+        )}
       </div>
     </nav>
   );
