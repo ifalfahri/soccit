@@ -23,8 +23,8 @@ export function Navbar() {
       </Link>
       <div className="flex items-center gap-x-4">
       <ThemeToggle />
-      <Button variant="secondary">Sign Up</Button>
-      <Button>Login</Button>
+      <Button variant="secondary" asChild><RegisterLink>Sign Up</RegisterLink></Button>
+      <Button asChild><LoginLink>Log In</LoginLink></Button>
       </div>
     </nav>
   );
