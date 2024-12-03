@@ -20,7 +20,8 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "turbo": "^2.3.3"
   },
   "devDependencies": {
     "typescript": "^5",
